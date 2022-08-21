@@ -3,7 +3,7 @@ export default function SerachInput({ setSearchTerm }) {
       <input
         className="rounded mb-3"
         type="text"
-        placeholder="Search..."
+        placeholder="Search username..."
         onChange={(e) => {
           setSearchTerm(e.target.value);
         }}
