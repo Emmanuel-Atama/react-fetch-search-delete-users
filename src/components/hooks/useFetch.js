@@ -6,11 +6,11 @@ const GetUserData = () => {
 
   const fetchUsers = async () => {
     try {
-      const responce = await Axios.get(
+      const response = await Axios.get(
         "https://jsonplaceholder.typicode.com/users"
       );
-      console.log(responce.data);
-      setUsers(responce.data);
+      console.log(response.data);
+      setUsers(response.data);
     } catch (error) {
       console.error(error.message);
     }
