@@ -1,11 +1,12 @@
 export default function TableHead() {
     return (
-      <thead>
+      <thead className="table table-dark table-hover">
         <tr>
           <th>#</th>
-          <th>First Name</th>
+          <th>Names</th>
           <th>Username</th>
           <th>Email</th>
+          <th>City</th>
           <th>Action</th>
         </tr>
       </thead>
