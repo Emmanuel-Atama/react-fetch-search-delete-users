@@ -1,8 +1,40 @@
-// import { AppContext } from './RenderUserList';
-// import { useContext } from 'react';
 
-export const EditableRow = ({editForm, handleEditForm, handleCancelClick}) => {
-    // const {editForm, handleEditForm, handleCancelClick} = useContext(AppContext)
+const EditableRow = ({ contacts, setContacts, editUserId, setEditUserId, editForm, setEditForm }) => {
+console.log("Inside contact in Editable Row: ", contacts)
+  console.log("Edit Form: ", editForm);
+  const handleEditFormSubmit = (e) => {
+    e.preventDefault();
+
+    const userToEdit = {
+      id: editUserId,
+      name: editForm.name,
+      username: editForm.username,
+      email: editForm.email,
+      address: editForm.address,
+    };
+
+    const updatedContact = contacts.map((contact) => {
+      if (contact.id !== editUserId) {
+        return contact;
+      } else {
+        return userToEdit;
+      }
+    });
+
+    setContacts(updatedContact);
+    setEditUserId(null);
+  };
+
+  const handleEditForm = (e) => {
+    const { name, value } = e.target;
+
+    setEditForm({ ...editForm, [name]: value });
+  };
+
+  const handleCancelClick = () => {
+    setEditUserId(null);
+  };
+
   return (
     <tr>
       <td>
@@ -46,7 +78,11 @@ export const EditableRow = ({editForm, handleEditForm, handleCancelClick}) => {
         />
       </td>
       <td>
-        <button type="submit" className="btn btn-outline-danger">
+        <button
+          type="submit"
+          className="btn btn-outline-danger"
+          onClick={handleEditFormSubmit}
+        >
           Save
         </button>
         <button
@@ -60,3 +96,4 @@ export const EditableRow = ({editForm, handleEditForm, handleCancelClick}) => {
     </tr>
   );
 };
+export default EditableRow;

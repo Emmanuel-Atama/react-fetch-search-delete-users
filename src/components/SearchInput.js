@@ -1,7 +1,6 @@
-// import { useContext } from 'react';
-// import { AppContext } from './RenderUserList';
+
 const SerachInput = ({setSearchTerm}) => {
-  // const {setSearchTerm} = useContext(AppContext)
+
     return (
       <input
         className="rounded mb-3"

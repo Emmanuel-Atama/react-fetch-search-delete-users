@@ -6,7 +6,7 @@ export default function TableHead() {
           <th>Names</th>
           <th>Username</th>
           <th>Email</th>
-          <th>City</th>
+          <th>Address</th>
           <th>Action</th>
         </tr>
       </thead>
