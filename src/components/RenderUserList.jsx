@@ -1,12 +1,13 @@
 import "../App.css";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import TableHead from "../components/TableHead";
-import SerachInput from "../components/SearchInput";
+import TableHead from "./TableHead";
+import SerachInput from "./SearchInput";
 import GetUserData from "./hooks/useFetch";
 import ReadOnlyRow from "../components/ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import AddNewUser from "./AddNewUser";
+import FilterSearch from './utilities/FilterSearch';
 
 const RenderUserList = () => {
   const [contacts, setContacts] = GetUserData();
@@ -18,6 +19,7 @@ const RenderUserList = () => {
     address: "",
   });
 
+  const filteredUser = FilterSearch(contacts, searchTerm)
   const [editUserId, setEditUserId] = useState(null);
 
   const handleDeleteUser = (id) => {
@@ -26,24 +28,6 @@ const RenderUserList = () => {
     const userToDelete = contacts.filter((user) => user.id !== id);
 
     setContacts(userToDelete);
-  };
-
-  const filteredUser = contacts.filter((user) => {
-    const search = user.username.toLowerCase().includes(searchTerm.toLowerCase());
-    return search
-  });
-
-  const handleEditClick = ( user) => {
-    console.log("Inside user: ", user)
-    setEditUserId(user.id);
-
-    const formValues = {
-      name: user.name,
-      username: user.username,
-      email: user.email,
-      address: user.address,
-    };
-    setEditForm(formValues);
   };
 
   return (
@@ -57,22 +41,24 @@ const RenderUserList = () => {
           return (
             <>
               {editUserId === user.id ? (
-                    <EditableRow
-                    contacts={contacts}
-                    setContacts={setContacts}
-                    editUserId={editUserId}
-                    setEditUserId={setEditUserId}
-                    editForm={editForm}
-                    setEditForm={setEditForm}
-                    />
-                  ) : (
-                    <ReadOnlyRow
-                      user={user}
-                      handleDeleteUser={handleDeleteUser}
-                      handleEditClick={handleEditClick}
-                    />
-                  )}
-         
+                <EditableRow
+                // key={user.id}
+                  contacts={contacts}
+                  setContacts={setContacts}
+                  editUserId={editUserId}
+                  setEditUserId={setEditUserId}
+                  editForm={editForm}
+                  setEditForm={setEditForm}
+                />
+              ) : (
+                <ReadOnlyRow
+                // key={user.id}
+                  user={user}
+                  handleDeleteUser={handleDeleteUser}
+                 setEditForm={setEditForm}
+                 setEditUserId={setEditUserId}
+                />
+              )}
             </>
           );
         })}

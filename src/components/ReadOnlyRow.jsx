@@ -1,4 +1,16 @@
-const ReadOnlyRow = ({ user, handleDeleteUser, handleEditClick }) => {
+const ReadOnlyRow = ({ user, handleDeleteUser, setEditUserId, setEditForm}) => {
+  const handleEditClick = () => {
+   
+    setEditUserId(user.id);
+
+    const formValues = {
+      name: user.name,
+      username: user.username,
+      email: user.email,
+      address: user.address,
+    };
+    setEditForm(formValues);
+  };
   return (
     <tbody key={user.id}>
       <tr>
@@ -10,7 +22,7 @@ const ReadOnlyRow = ({ user, handleDeleteUser, handleEditClick }) => {
         <td>
           <button
             className="btn btn-warning"
-            onClick={() => handleEditClick(user)}
+            onClick={handleEditClick}
           >
             Edit
           </button>
