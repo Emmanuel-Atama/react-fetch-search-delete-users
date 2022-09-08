@@ -34,7 +34,12 @@ const EditableRow = ({
   const handleEditForm = (e) => {
     const { name, value } = e.target;
 
-    setEditForm({ ...editForm, [name]: value });
+    setEditForm((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value,
+      };
+    });
   };
 
   const handleCancelClick = () => {
