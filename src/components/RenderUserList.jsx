@@ -42,7 +42,6 @@ const RenderUserList = () => {
             <>
               {editUserId === user.id ? (
                 <EditableRow
-                // key={user.id}
                   contacts={contacts}
                   setContacts={setContacts}
                   editUserId={editUserId}
@@ -52,7 +51,6 @@ const RenderUserList = () => {
                 />
               ) : (
                 <ReadOnlyRow
-                // key={user.id}
                   user={user}
                   handleDeleteUser={handleDeleteUser}
                  setEditForm={setEditForm}
